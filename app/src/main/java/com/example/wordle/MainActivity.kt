@@ -67,17 +67,15 @@ class MainActivity : AppCompatActivity() {
 
         submitButton.setOnClickListener {
             val guess = guessEditText.text.toString().uppercase()
-            if(guess.length == 4) {
-                if (numGuesses < 3) {
-                    numGuesses++
-                    resultTextView.text = checkGuess(guess)
-                    if (numGuesses == 3) {
-                        submitButton.text = "Reset"
-                        resultTextView.text = targetWord
-                    }
-                } else {
-                    resetGame()
+            if (numGuesses < 3 && guess.length == 4) {
+                numGuesses++
+                resultTextView.text = checkGuess(guess)
+                if (numGuesses == 3) {
+                    submitButton.text = "Reset"
+                    resultTextView.text = targetWord
                 }
+            } else if (numGuesses >= 3) {
+                resetGame()
             }
         }
     }
